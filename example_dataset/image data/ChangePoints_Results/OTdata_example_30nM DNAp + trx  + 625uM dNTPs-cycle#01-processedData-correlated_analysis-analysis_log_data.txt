@@ -1,0 +1,15 @@
+kymo_cycle: 1
+kymo_xlim_left: 5
+kymo_xlim_right: 550
+x_offset: -31
+y_offset: 23
+rec_x: 330
+rec_y: 50
+rec_w: 200
+rec_h: 5
+bagrnd_filter_window: 25
+signal_filter_window: 7
+threshold_sigma: 3.0
+Intensity_changepoint#: 75
+windowsize_cp_basepair: 9
+sigmavalue_basepair: 0.08
