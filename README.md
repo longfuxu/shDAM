@@ -74,6 +74,15 @@ For users who prefer interactive controls for data analysis. We provide GUIs for
 - **GUI_KymographAnalyzer**: For analyzing kymographs and finding steps.
 - **GUI_SegmentsAnalyzer**: For analyzing correlated segments.
 
+![OT Data Analyzer](property/OTAnalyzer_screenshot.png)
+_The GUI for Optical Tweezer data analysis._
+
+![Kymograph Analyzer](property/kymoanalzyer.png)
+_The GUI for Kymograph analysis._
+
+![Segments Analyzer](property/SegmentsAnalyzer_screenshot.png)
+_The GUI for Correlated Segments analysis._
+
 ## Reproducibility
 
 ### Parameter Tuning
@@ -83,12 +92,36 @@ The parameters in the notebooks, scripts, and GUIs are tuned for the provided ex
 For fully reproducible results, a Code Ocean capsule is available:
 - [Link to Code Ocean Capsule] (To be added upon publication)
 
-## Additional Algorithms
-This project utilizes and provides fast, custom-built algorithms for single-molecule data analysis. These tools are included as submodules or directories within this repository. For more details, please see the specific directories:
-- **`fast_pwl_fit_GUI`**: A tool for fast piece-wise linear fitting of data traces.
-- **`autostepfinder_GUI`**: A robust step-finding algorithm used to identify discrete steps.
-- **`ChangePointDetection_slope_GUI`**: A efficient changepoint detection algorithm used to identify change points for gradual changing traces.
+## Advanced Algorithms for Data Analysis
 
+This project integrates several powerful, standalone tools for specialized single-molecule data analysis. Each tool is available in its own directory and includes a graphical user interface (GUI) for ease of use.
+
+### `autostepfinder_GUI`: Automated Step-Finding for Discrete Events
+This tool provides an implementation of the `AutoStepfinder` algorithm, designed to rapidly and automatically detect discrete steps in time-series data. It is particularly well-suited for analyzing single-molecule traces where proteins or enzymes exhibit step-like movements or changes in state. The algorithm uses a dual-pass method to determine the optimal number of steps, providing a robust fit even for noisy data.
+
+**Key Features**:
+- Automated, dual-pass step detection.
+- Interactive GUI to tune parameters and visualize fits in real-time.
+- Exports step properties, including size, dwell time, and error.
+
+**Original Algorithm Credit**:
+This tool is based on the MATLAB code from the 2021 publication by Loeff et al. Please cite the original paper when using this algorithm:
+> Loeff, L., Kerssemakers, J. W. J., Joo, C., & Dekker, C. (2021). AutoStepfinder: A fast and automated step detection method for single-molecule analysis. *Patterns*, Volume 2, Issue 5, 100256
+
+### `ChangePointDetection_slope_GUI`: Detecting Changes in Gradual Traces
+This tool is designed to identify significant changes in the slope of a data trace, making it ideal for analyzing processes with gradual transitions rather than abrupt steps. It implements the change-point detection algorithm described by Kerssemakers et al. (2006), which is effective for parsing phenomena such as the assembly/disassembly dynamics of biomolecules.
+
+**Key Features**:
+- Detects change-points in gradually varying data.
+- Allows for fine-tuning of sensitivity via moving window size and noise parameters.
+- Visualizes the original data, fitted segments, and the derivative trace.
+
+**Original Algorithm Credit**:
+The underlying method was first described in the 2006 Nature paper by Kerssemakers et al. Please cite this work when using the change-point detection algorithm:
+> Kerssemakers, J., Munteanu, E., Laan, L., Noetzel, T. L., Janson, M. E., & Dogterom, M. (2006). Assembly dynamics of microtubules at molecular resolution. *Nature*, 442(7103), 709–712.
+
+### `fast_pwl_fit_GUI`: Fast Piece-Wise Linear Fitting
+This tool offers a fast algorithm for fitting time-series data with a series of connected straight lines (piece-wise linear). It is a general-purpose utility for segmenting traces into linear portions, which can be useful for identifying periods of constant velocity or rate.
 
 ## Example Walkthrough
 
