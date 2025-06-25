@@ -618,23 +618,34 @@ def main():
     # Note: Saving plots as images requires the 'kaleido' package (pip install kaleido)
     print("\nGenerating and saving step-finding plots...")
 
-    # Fit Plot
-    fig_fit = go.Figure()
-    fig_fit.add_trace(go.Scatter(x=time_data, y=signal_data, mode='lines', name='Original Data', line=dict(color='lightgray', width=1.5)))
-    fig_fit.add_trace(go.Scatter(x=time_data, y=final_fit, mode='lines', name='Step Fit', line=dict(color='black', width=2)))
-    fig_fit.update_layout(title="AutoStepFinder Analysis", xaxis_title=f"Time (s)", yaxis_title="Intensity", hovermode="x unified", height=400, font=dict(family="serif", size=14))
+    # Fit Plot - Using matplotlib instead of plotly to avoid Kaleido path issues
+    fig_fit_plt = plt.figure(figsize=(10, 4))
+    font_plot = {'family': 'serif', 'weight': 'normal', 'size': 14}
+    plt.plot(time_data, signal_data, color='lightgray', linewidth=1.5, label='Original Data')
+    plt.plot(time_data, final_fit, color='black', linewidth=2, label='Step Fit')
+    plt.xlabel("Time (s)", fontdict=font_plot)
+    plt.ylabel("Intensity", fontdict=font_plot)
+    plt.title("AutoStepFinder Analysis", fontdict=font_plot)
+    plt.legend()
+    plt.tight_layout()
     fit_plot_filename = os.path.join(output_dir_steps, f"{file_stem_step}_fit_plot.png")
-    fig_fit.write_image(fit_plot_filename, scale=3, width=1000, height=400)
+    plt.savefig(fit_plot_filename, dpi=300, bbox_inches='tight')
     print(f"  - Fit plot saved to: {fit_plot_filename}")
+    plt.close(fig_fit_plt)
 
-    # Dwell Time Distribution
+    # Dwell Time Distribution - Using matplotlib instead of plotly
     if not final_steps.empty:
         dwell_times_sec = final_steps['dwell_time_after'] * params.resolution
-        fig_dwell = px.histogram(x=dwell_times_sec, nbins=20, title="Dwell Time Distribution (After Step)", labels={'x': 'Dwell Time (s)'})
-        fig_dwell.update_layout(yaxis_title="Count", height=400, font=dict(family="serif", size=14))
+        fig_dwell_plt = plt.figure(figsize=(8, 4))
+        plt.hist(dwell_times_sec, bins=20, edgecolor='black', alpha=0.7)
+        plt.xlabel("Dwell Time (s)", fontdict=font_plot)
+        plt.ylabel("Count", fontdict=font_plot)
+        plt.title("Dwell Time Distribution (After Step)", fontdict=font_plot)
+        plt.tight_layout()
         dwell_plot_filename = os.path.join(output_dir_steps, f"{file_stem_step}_dwell_time_dist.png")
-        fig_dwell.write_image(dwell_plot_filename, scale=3, width=800, height=400)
+        plt.savefig(dwell_plot_filename, dpi=300, bbox_inches='tight')
         print(f"  - Dwell time plot saved to: {dwell_plot_filename}")
+        plt.close(fig_dwell_plt)
     else:
         print("  - No steps found, skipping dwell time plot.")
 

@@ -217,6 +217,22 @@ ValueError: ... matplotlib ... widget backend error
 
 **Note**: Always restart your Jupyter kernel after changing backends!
 
+### Kaleido Path Issues (Windows/Mac with spaces in paths)
+
+#### Problem: Plotly image export fails with path errors
+```python
+ValueError: Failed to start Kaleido subprocess. Error stream:
+cd: /path/with spaces/: No such file or directory
+```
+
+**Solution**: The notebooks and scripts have been updated to use matplotlib for image saving instead of Plotly's Kaleido engine. This ensures:
+- ✅ **Cross-platform compatibility** (Windows, Mac, Linux)
+- ✅ **Works with spaces in directory names**
+- ✅ **Same quality output** (300 DPI)
+- ✅ **Interactive Plotly displays preserved** for exploration
+
+**Manual Fix**: If you encounter this error, replace `fig.write_image()` calls with matplotlib equivalents.
+
 ### General Tips
 - **Use Conda**: It handles compiled packages automatically across all platforms
 - **Virtual environments**: Always use them to avoid conflicts
