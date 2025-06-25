@@ -22,11 +22,19 @@ The core analysis pipeline consists of three main steps, which correlate mechani
 
 ### Installation Steps
 
-1.  Clone the repository:
+1.  Clone the repository with all submodules:
     ```bash
+    # Option 1: Clone with submodules in one command (recommended)
+    git clone --recurse-submodules https://github.com/longfuxu/shDAM.git
+    cd shDAM
+    
+    # Option 2: If you already cloned without submodules, initialize them separately
     git clone https://github.com/longfuxu/shDAM.git
     cd shDAM
+    git submodule update --init --recursive
     ```
+    
+    **Note**: This repository contains three GUI tools as submodules (`autostepfinder_GUI`, `ChangePointDetection_slope_GUI`, and `fast_pwl_fit_GUI`). Using `--recurse-submodules` ensures you get all the complete functionality.
 
 2.  Create and activate a virtual environment:
     ```bash
