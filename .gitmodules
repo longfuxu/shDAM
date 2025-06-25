@@ -1,0 +1,9 @@
+[submodule "autostepfinder_GUI"]
+	path = autostepfinder_GUI
+	url = https://github.com/longfuxu/autostepfinder_GUI.git
+[submodule "ChangePointDetection_slope_GUI"]
+	path = ChangePointDetection_slope_GUI
+	url = https://github.com/longfuxu/ChangePointDetection_slope_GUI.git
+[submodule "fast_pwl_fit_GUI"]
+	path = fast_pwl_fit_GUI
+	url = https://github.com/longfuxu/fast_pwl_fit_GUI.git
