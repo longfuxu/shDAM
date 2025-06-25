@@ -122,8 +122,6 @@ After installation, test your setup:
 ```bash
 # Run the comprehensive test script
 python test_installation.py
-# for Mac users, you might need to run:
-python3 test_installation.py
 ```
 
 This script will check all packages and provide a detailed report of what's working.
