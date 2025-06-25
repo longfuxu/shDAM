@@ -48,8 +48,8 @@ The core analysis pipeline consists of three main steps, which correlate mechani
 2.  **Create and activate a virtual environment:**
     ```bash
     # On macOS/Linux
-    python3 -m venv venv
-    source venv/bin/activate
+    python3 -m venv shdam
+    source shdam/bin/activate
     ```
 
 3.  **Install packages:**
@@ -122,6 +122,8 @@ After installation, test your setup:
 ```bash
 # Run the comprehensive test script
 python test_installation.py
+# for Mac users, you might need to run:
+python3 test_installation.py
 ```
 
 This script will check all packages and provide a detailed report of what's working.
